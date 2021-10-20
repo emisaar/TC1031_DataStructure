@@ -31,7 +31,7 @@ private:
     NodoLista<T> * head;
     NodoLista<T> * last;
         // O(n)
-    int lengthRecursive(NodoLista<T> * h )
+    int lengthRecursive(NodoLista<T> * h)
     {
     if (h == NULL) 
         return 0;
@@ -113,22 +113,22 @@ public:
 
         // O(1)
     T remove_front(){
-    if(is_empty()){
-        throw -1;
-    }else if(head == last){
-        // 1 NodoLista
-        T dato = head->data;// sacar dato
-        delete head;                    // borrar NodoLista
-        head = last = NULL;
-        return dato;
-    }else{
-        // minimo 2 NodoListas
-        T dato = head->data;
-        head = head->next;
-        delete head->prev;
-        head->prev = NULL;
-        return dato;
-    }
+        if(is_empty()){
+            throw -1;
+        }else if(head == last){
+            // 1 NodoLista
+            T dato = head->data;// sacar dato
+            delete head;                    // borrar NodoLista
+            head = last = NULL;
+            return dato;
+        }else{
+            // minimo 2 NodoListas
+            T dato = head->data;
+            head = head->next;
+            delete head->prev;
+            head->prev = NULL;
+            return dato;
+        }
     }
 
         // O(1)
@@ -263,6 +263,27 @@ public:
                 return datoMin;
             }
         } 
+    }
+
+    bool contains(T data){
+        NodoLista<T> *tmp = head;
+        for(int i = 0; i < length(); i++){
+            if(tmp->data == data){
+                return true;
+            }
+            tmp = tmp->next;
+        }
+        return false;
+    }
+
+    bool operator<(const LinkedList<T> &lista)
+    {
+        return (size() < lista.size());
+    }
+
+    bool operator>(const LinkedList<T> &lista)
+    {
+        return (size() > lista.size);
     }
 
 };

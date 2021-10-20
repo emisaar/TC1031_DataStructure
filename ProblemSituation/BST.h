@@ -16,6 +16,7 @@ class Nodo{
             this->left = NULL;
             this->right = NULL;
         }
+        
 };
 
 
